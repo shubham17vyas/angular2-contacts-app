@@ -1,32 +1,47 @@
-<h2>Add Contact</h2>
+<div *ngIf="appState == 'default'">
+    <h2>Add Contact</h2>
+    <form>
+        <p>Full Name: </p>
+        <input type="text" [(ngModel)]="name" name="usrname" placeholder="Ex. Shubham Vyas" required>
 
-<form>
-   
-    <p>Full Name: </p>
-    <input type="text" [(ngModel)]="name" name="usrname" placeholder="Ex. Shubham Vyas" required>
-    
-    <p>Phone Number:</p>
-    <input type="tel" name="usrtel" [(ngModel)]="phone" placeholder="Ex. (435) 294-8888" required>
-    <br><br>
-    <input type="submit" value="Submit" (click)="addContact()">
-    <input type="reset">
-</form>
+        <p>Phone Number:</p>
+        <input type="tel" name="usrtel" [(ngModel)]="phone" placeholder="Ex. (435) 294-8888" required>
+        <br>
+        <br>
+        <input type="submit" value="Submit" (click)="addContact()">
+    </form>
+</div>
 
+<div *ngIf="appState == 'edit'">
+    <h2>Edit Contact</h2>
+    <form>
+        <p>Full Name: </p>
+        <input type="text" [(ngModel)]="name" name="usrname" placeholder="Shubham Vyas" required>
+
+        <p>Phone Number:</p>
+        <input type="tel" [(ngModel)]="phone" name="usrtel" placeholder="(435) 294-8888" required>
+        <br>
+        <br>
+        <input type="submit" value="Update" (click)="updateContact()">
+    </form>
+</div>
 
 <h2>Contact List</h2>
 <table class="table table-hover">
-   <thead>
-       <tr>
-           <th>Name</th>
-           <th>Phone</th>
-       </tr>
-   </thead>
-   <tbody>
-       <tr *ngFor = "let contact of contacts">
-           <td>{{contact.name}}</td>
-           <td>{{contact.phone}}</td>
-           <span class="glyphicon glyphicon-trash" aria-hidden="true" (click)="deleteContact(contact)"></span>
-       </tr>
-   </tbody>
-    
+    <thead>
+        <tr>
+            <th>SerialNumber</th>
+            <th>Name</th>
+            <th>Phone</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let contact of contacts; let i=index">
+            <td>{{i+1}}</td>
+            <td>{{contact.name}}</td>
+            <td>{{contact.phone}}</td>&nbsp;
+            <span class="glyphicon glyphicon-trash" aria-hidden="true" (click)="deleteContact(i)"></span>&nbsp;
+            <span class="glyphicon glyphicon-pencil" (click)="editContact(contact)"></span>
+        </tr>
+    </tbody>
 </table>

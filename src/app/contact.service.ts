@@ -26,20 +26,35 @@ export class ContactService extends Init{
         localStorage.setItem('contacts', JSON.stringify(contacts));
     }
     
-    deleteContact(contact){
+    deleteContact(index){
         
         
         var contacts = JSON.parse(localStorage.getItem('contacts'));
         
 
-        for(var i =0;i<contacts.length;i++){
         
-            if(contacts[i].name === contact.name){
-                contacts.splice(i, 1);
+            
+                contacts.splice(index, 1);
+                
+            
+        
+        //set new contacts
+        localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+    
+    updateContact(oldName, newName, oldPhone, newPhone){
+        var contacts = JSON.parse(localStorage.getItem('contacts'));
+        
+        for(var i=0; i<contacts.length;i++){
+            if(contacts[i].name == oldName){
+                if(contacts[i].phone == oldPhone){
+                    contacts[i].phone = newPhone;
+                    contacts[i].name = newName;
+                }
                 
             }
         }
-        //set new contacts
+        
         localStorage.setItem('contacts', JSON.stringify(contacts));
     }
 }

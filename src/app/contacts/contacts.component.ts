@@ -11,6 +11,10 @@ export class ContactsComponent implements OnInit {
     contacts;
     name;
     phone;
+    appState = "default";
+    oldName;
+    oldPhone;
+    
   constructor(private _contactService: ContactService) { }
 
   ngOnInit() {
@@ -28,14 +32,34 @@ export class ContactsComponent implements OnInit {
    this._contactService.addContact(newContact);
   }
   
-  deleteContact(contact){
-    for(var i =0;i<this.contacts.length;i++){
-        if(this.contacts[i] === contact){
-            this.contacts.splice(i, 1);
+  deleteContact(index){
+    
+       
+            this.contacts.splice(index, 1);
             
+       
+    this._contactService.deleteContact(index);
+  }
+  
+  editContact(contact){
+    this.appState="edit";
+    this.oldName = contact.name;
+    this.oldPhone = contact.phone;
+    this.name = contact.name;
+    this.phone = contact.phone;
+    
+  }
+  
+  updateContact(){
+  
+    for(var i=0; i<this.contacts.length;i++){
+        if(this.contacts[i].name===this.oldName){
+            this.contacts[i].name = this.name;
+        }else if(this.contacts[i].phone===this.oldPhone){
+            this.contacts[i].phone = this.phone;
         }
     }
-    this._contactService.deleteContact(contact);
+    this._contactService.updateContact(this.oldName, this.name, this.oldPhone, this.phone);
   }
 
 }
