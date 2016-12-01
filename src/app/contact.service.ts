@@ -30,12 +30,7 @@ export class ContactService extends Init{
         
         
         var contacts = JSON.parse(localStorage.getItem('contacts'));
-        
-
-        
-            
-                contacts.splice(index, 1);
-                
+        contacts.splice(index, 1);
             
         
         //set new contacts
