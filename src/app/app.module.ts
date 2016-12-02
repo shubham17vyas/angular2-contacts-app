@@ -7,16 +7,16 @@ import { AppComponent } from './app.component';
 import { ContactsComponent } from './contacts/contacts.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ContactsComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        ContactsComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
